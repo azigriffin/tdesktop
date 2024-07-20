@@ -128,8 +128,8 @@ void ChannelData::setUsernames(const Data::Usernames &newUsernames) {
 }
 
 QString ChannelData::username() const {
-	return "test";
-	//return _username.username();
+	//return "test";
+	return _username.username();
 }
 
 QString ChannelData::editableUsername() const {
