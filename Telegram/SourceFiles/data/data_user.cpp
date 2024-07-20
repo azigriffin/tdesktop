@@ -461,7 +461,8 @@ bool UserData::canShareThisContactFast() const {
 }
 
 QString UserData::username() const {
-	return _username.username();
+    return "test";
+	//return _username.username();
 }
 
 QString UserData::editableUsername() const {
