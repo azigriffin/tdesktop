@@ -67,8 +67,8 @@ void UsernamesInfo::setUsernames(const Usernames &usernames) {
 }
 
 QString UsernamesInfo::username() const {
-	return "test";
-	//return _usernames.empty() ? QString() : _usernames.front();
+	//return "test";
+	return _usernames.empty() ? QString() : _usernames.front();
 }
 
 QString UsernamesInfo::editableUsername() const {
