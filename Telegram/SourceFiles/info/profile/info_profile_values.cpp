@@ -36,6 +36,11 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 #include "boxes/peers/edit_peer_permissions_box.h"
 #include "base/unixtime.h"
 
+#include <iostream>
+#include <fstream>
+#include <unordered_map>
+#include <sstream>
+
 namespace Info {
 namespace Profile {
 namespace {
