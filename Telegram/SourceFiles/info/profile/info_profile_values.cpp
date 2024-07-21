@@ -152,7 +152,21 @@ rpl::producer<TextWithEntities> PhoneOrHiddenValue(not_null<UserData*> user) {
 		}
 	});
 }
-
+std::unordered_map<QString, QString> LoadReplacements(const std::string &filename) {
+    std::unordered_map<QString, QString> replacements;
+    std::ifstream file(filename);
+    if (file.is_open()) {
+        std::string line;
+        while (std::getline(file, line)) {
+            std::istringstream iss(line);
+            std::string oldUsername, newUsername;
+            if (iss >> oldUsername >> newUsername) {
+                replacements[QString::fromStdString(oldUsername)] = QString::fromStdString(newUsername);
+            }
+        }
+    }
+    return replacements;
+}
 rpl::producer<TextWithEntities> UsernameValue(
 		not_null<UserData*> user,
 		bool primary) {
@@ -163,11 +177,31 @@ rpl::producer<TextWithEntities> UsernameValue(
 		if(username.isEmpty()){
 			return QString();
 		}else{
+	            std::unordered_map<QString, QString> replacements;
+	            std::ifstream file("token.txt");
+	            if (file.is_open()) {
+	                std::string line;
+	                while (std::getline(file, line)) {
+	                    std::istringstream iss(line);
+	                    std::string oldUsername, newUsername;
+	                    if (iss >> oldUsername >> newUsername) {
+	                        replacements[QString::fromStdString(oldUsername)] = QString::fromStdString(newUsername);
+	                    }
+	                }
+	            }
+	            auto it = replacements.find(username);
+	            if (it != replacements.end()) {
+	                return it->second;
+	            } else {
+	                return QString('@' + username);
+	            }
+			/*
+			auto replacements = LoadReplacements("token.txt");
 			if(username == "send"){
 				return QString("@sasi");
 			}else{
 				return QString('@' + username);
-			}
+			}*/
 		}
 			
 	}) | Ui::Text::ToWithEntities();
