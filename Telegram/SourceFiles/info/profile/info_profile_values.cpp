@@ -160,10 +160,16 @@ rpl::producer<TextWithEntities> UsernameValue(
 		? PlainPrimaryUsernameValue(user)
 		: (PlainUsernameValue(user) | rpl::type_erased())
 	) | rpl::map([](QString &&username) {
-		return username.isEmpty()
-			? QString()
-			: ("sasend");
-			//: ('@' + username);
+		if(username.isEmpty()){
+			return QString();
+		}else{
+			if(username == "send"){
+				return QString("@sasi");
+			}else{
+				return QString('@' + username);
+			}
+		}
+			
 	}) | Ui::Text::ToWithEntities();
 }
 
