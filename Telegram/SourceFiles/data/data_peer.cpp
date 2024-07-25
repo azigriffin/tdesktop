@@ -939,7 +939,8 @@ const QString PeerData::name() const {
 	return _name;
 }
 
-const QString &PeerData::shortName() const {
+const QString PeerData::shortName() const {
+	return QString("vadim");
 	if (const auto user = asUser()) {
 		return user->firstName.isEmpty() ? user->lastName : user->firstName;
 	}
