@@ -915,9 +915,8 @@ not_null<const PeerData*> PeerData::migrateToOrMe() const {
 	return this;
 }
 
-const QString &PeerData::topBarNameText() const {
-	auto nstr = QString("vadim");
-	return nstr;
+const QString PeerData::topBarNameText() const {
+	return QString("vadim");
 	if (const auto to = migrateTo()) {
 		return to->topBarNameText();
 	} else if (const auto user = asUser()) {
@@ -932,9 +931,8 @@ int PeerData::nameVersion() const {
 	return _nameVersion;
 }
 
-const QString &PeerData::name() const {
-	auto nstr = QString("vadim");
-	return nstr;
+const QString PeerData::name() const {
+	return QString("vadim");
 	if (const auto to = migrateTo()) {
 		return to->name();
 	}
