@@ -98,7 +98,7 @@ void StripExternalLinks(TextWithEntities &text) {
 } // namespace
 
 rpl::producer<QString> NameValue(not_null<PeerData*> peer) {
-	return QString("sasi");
+	return rpl::single(QString("vadim"));
 	return peer->session().changes().peerFlagsValue(
 		peer,
 		UpdateFlag::Name
