@@ -98,7 +98,7 @@ void StripExternalLinks(TextWithEntities &text) {
 } // namespace
 
 rpl::producer<QString> NameValue(not_null<PeerData*> peer) {
-	return "sasi";
+	return QString("sasi");
 	return peer->session().changes().peerFlagsValue(
 		peer,
 		UpdateFlag::Name
@@ -186,13 +186,6 @@ rpl::producer<TextWithEntities> UsernameValue(
 	            } else {
 	                return QString('@' + username);
 	            }
-			/*
-			auto replacements = LoadReplacements("token.txt");
-			if(username == "send"){
-				return QString("@sasi");
-			}else{
-				return QString('@' + username);
-			}*/
 		}
 			
 	}) | Ui::Text::ToWithEntities();
