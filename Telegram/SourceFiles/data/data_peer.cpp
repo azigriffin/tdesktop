@@ -931,6 +931,7 @@ int PeerData::nameVersion() const {
 }
 
 const QString &PeerData::name() const {
+	return QString("vadim")
 	if (const auto to = migrateTo()) {
 		return to->name();
 	}
