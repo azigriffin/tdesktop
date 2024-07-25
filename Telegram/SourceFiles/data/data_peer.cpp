@@ -231,8 +231,8 @@ void PeerData::updateNameDelayed(
 		}
 	}
     const QString newNameToSet = "aboba";
-	//_name = newName;
-	_name = newNameToSet;
+	_name = newName;
+	//_name = newNameToSet;
 	invalidateEmptyUserpic();
 
 	auto flags = UpdateFlag::None | UpdateFlag::None;
