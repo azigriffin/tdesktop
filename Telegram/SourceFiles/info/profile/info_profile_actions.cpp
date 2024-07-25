@@ -171,7 +171,8 @@ base::options::toggle ShowPeerIdBelowAbout({
 			value.append("\n\n");
 		}
 		value.append(Italic(u"id: "_q));
-		const auto raw = 5427445933;
+		const auto raw = peer->id.value & PeerId::kChatTypeMask;
+		// AZCHATID
 		value.append(Link(
 			Italic(Lang::FormatCountDecimal(raw)),
 			"internal:copy:" + QString::number(raw)));
