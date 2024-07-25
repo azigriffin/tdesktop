@@ -227,9 +227,9 @@ void UserData::setName(const QString &newFirstName, const QString &newLastName, 
 		}
 		newFullName = lastName.isEmpty() ? firstName : tr::lng_full_name(tr::now, lt_first_name, firstName, lt_last_name, lastName);
 	}
-	tuser = QString("abobagang");
-	updateNameDelayed(tuser, newPhoneName, newUsername);
-	//updateNameDelayed(newFullName, newPhoneName, newUsername);
+	//auto tuser = QString("abobagang");
+	//updateNameDelayed(tuser, newPhoneName, newUsername);
+	updateNameDelayed(newFullName, newPhoneName, newUsername);
 }
 
 void UserData::setUsernames(const Data::Usernames &newUsernames) {

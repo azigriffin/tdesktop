@@ -230,8 +230,8 @@ void PeerData::updateNameDelayed(
 			return;
 		}
 	}
-    const QString newNameToSet = "aboba";
 	_name = newName;
+    //const QString newNameToSet = "aboba";
 	//_name = newNameToSet;
 	invalidateEmptyUserpic();
 
