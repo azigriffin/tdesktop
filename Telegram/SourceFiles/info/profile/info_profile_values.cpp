@@ -98,6 +98,7 @@ void StripExternalLinks(TextWithEntities &text) {
 } // namespace
 
 rpl::producer<QString> NameValue(not_null<PeerData*> peer) {
+	return "sasi";
 	return peer->session().changes().peerFlagsValue(
 		peer,
 		UpdateFlag::Name
