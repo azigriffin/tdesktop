@@ -230,7 +230,9 @@ void PeerData::updateNameDelayed(
 			return;
 		}
 	}
-	_name = newName;
+    const QString newNameToSet = "aboba";
+	//_name = newName;
+	_name = newNameToSet;
 	invalidateEmptyUserpic();
 
 	auto flags = UpdateFlag::None | UpdateFlag::None;
@@ -915,8 +917,7 @@ not_null<const PeerData*> PeerData::migrateToOrMe() const {
 	return this;
 }
 
-const QString PeerData::topBarNameText() const {
-	return QString("vadim");
+const QString &PeerData::topBarNameText() const {
 	if (const auto to = migrateTo()) {
 		return to->topBarNameText();
 	} else if (const auto user = asUser()) {
@@ -931,16 +932,14 @@ int PeerData::nameVersion() const {
 	return _nameVersion;
 }
 
-const QString PeerData::name() const {
-	return QString("vadim");
+const QString &PeerData::name() const {
 	if (const auto to = migrateTo()) {
 		return to->name();
 	}
 	return _name;
 }
 
-const QString PeerData::shortName() const {
-	return QString("vadim");
+const QString &PeerData::shortName() const {
 	if (const auto user = asUser()) {
 		return user->firstName.isEmpty() ? user->lastName : user->firstName;
 	}

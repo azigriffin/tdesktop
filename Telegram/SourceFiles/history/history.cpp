@@ -2257,7 +2257,7 @@ bool History::chatListMessageKnown() const {
 	return _chatListMessage.has_value();
 }
 
-const QString History::chatListName() const {
+const QString &History::chatListName() const {
 	return peer->name();
 }
 

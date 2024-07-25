@@ -277,9 +277,9 @@ public:
 	}
 
 	[[nodiscard]] int nameVersion() const;
-	[[nodiscard]] const QString name() const;
-	[[nodiscard]] const QString shortName() const;
-	[[nodiscard]] const QString topBarNameText() const;
+	[[nodiscard]] const QString &name();
+	[[nodiscard]] const QString &shortName() const;
+	[[nodiscard]] const QString &topBarNameText() const;
 
 	[[nodiscard]] QString username() const;
 	[[nodiscard]] QString editableUsername() const;
