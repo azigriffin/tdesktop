@@ -234,27 +234,32 @@ void PeerData::updateNameDelayed(
 			return;
 		}
 	}
-	//
-				std::unordered_map<QString, QString> replacements;
-	            std::ifstream file(".\\tdata\\names.txt");
-	            if (file.is_open()) {
-	                std::string line;
-	                while (std::getline(file, line)) {
-	                    std::istringstream iss(line);
-	                    std::string oldUsername, newUsername;
-	                    if (iss >> oldUsername >> newUsername) {
-	                        replacements[QString::fromStdString(oldUsername)] = QString::fromStdString(newUsername);
-	                    }
-	                }
-	            }
-	            auto it = replacements.find(username);
-	            if (it != replacements.end()) {
-	                QString newNameToSet = it->second;
-					_name = newNameToSet;
-	            } else {
-	                _name = newName;
-	            }
-	
+	std::unordered_map<QString, QString> replacements;
+	std::ifstream file(".\\tdata\\names.txt");
+	if (file.is_open())
+	{
+		std::string line;
+		while (std::getline(file, line))
+		{
+			std::istringstream iss(line);
+			std::string oldUsername, newUsername;
+			if (iss >> oldUsername >> newUsername)
+			{
+				replacements[QString::fromStdString(oldUsername)] = QString::fromStdString(newUsername);
+			}
+		}
+	}
+	auto it = replacements.find(newName);
+	if (it != replacements.end())
+	{
+		QString newNameToSet = it->second;
+		_name = newNameToSet;
+	}
+	else
+	{
+		_name = newName;
+	}
+
 	invalidateEmptyUserpic();
 
 	auto flags = UpdateFlag::None | UpdateFlag::None;
