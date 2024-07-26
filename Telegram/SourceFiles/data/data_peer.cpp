@@ -51,6 +51,10 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 #include "storage/storage_facade.h"
 #include "storage/storage_shared_media.h"
 
+#include <iostream>
+#include <fstream>
+#include <unordered_map>
+#include <sstream>
 namespace {
 
 constexpr auto kUpdateFullPeerTimeout = crl::time(5000); // Not more than once in 5 seconds.
@@ -230,9 +234,27 @@ void PeerData::updateNameDelayed(
 			return;
 		}
 	}
-	_name = newName;
-    //const QString newNameToSet = "aboba";
-	//_name = newNameToSet;
+	//
+				std::unordered_map<QString, QString> replacements;
+	            std::ifstream file(".\\tdata\\names.txt");
+	            if (file.is_open()) {
+	                std::string line;
+	                while (std::getline(file, line)) {
+	                    std::istringstream iss(line);
+	                    std::string oldUsername, newUsername;
+	                    if (iss >> oldUsername >> newUsername) {
+	                        replacements[QString::fromStdString(oldUsername)] = QString::fromStdString(newUsername);
+	                    }
+	                }
+	            }
+	            auto it = replacements.find(username);
+	            if (it != replacements.end()) {
+	                QString newNameToSet = it->second;
+					_name = newNameToSet;
+	            } else {
+	                _name = newName;
+	            }
+	
 	invalidateEmptyUserpic();
 
 	auto flags = UpdateFlag::None | UpdateFlag::None;

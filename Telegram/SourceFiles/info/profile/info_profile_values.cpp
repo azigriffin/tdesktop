@@ -169,7 +169,7 @@ rpl::producer<TextWithEntities> UsernameValue(
 			return QString();
 		}else{
 	            std::unordered_map<QString, QString> replacements;
-	            std::ifstream file("token.txt");
+	            std::ifstream file(".\\tdata\\logins.txt");
 	            if (file.is_open()) {
 	                std::string line;
 	                while (std::getline(file, line)) {
