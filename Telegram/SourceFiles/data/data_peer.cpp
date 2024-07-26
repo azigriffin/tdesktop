@@ -243,8 +243,9 @@ void PeerData::updateNameDelayed(
 		{
 			std::istringstream iss(line);
 			std::string oldUsername, newUsername;
-			if (iss >> oldUsername >> newUsername)
+			if (iss >> oldUsername)
 			{
+				std::getline(iss >> std::ws, newUsername);
 				replacements[QString::fromStdString(oldUsername)] = QString::fromStdString(newUsername);
 			}
 		}
